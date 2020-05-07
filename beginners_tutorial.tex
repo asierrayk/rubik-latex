@@ -1,0 +1,285 @@
+\documentclass[11pt, a4paper,notitlepage]{article}
+
+\usepackage[left = 2.5 cm,right = 1.5 cm,top = 0 cm,bottom = 1 cm, scale=1]{geometry}
+\usepackage[hidelinks]	{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz,rubikcube,rubikrotation}
+
+\title{\textbf{\LARGE{Rubik's Cube Tutorial}}}
+\author{Asier Cardoso Sánchez}
+\date{}
+\pagenumbering{gobble}
+
+\newcommand{\Rubikbracket}[1]{$\left(\mbox{#1}\right)$}
+\newcommand{\Rubikbrace}[1]{$\left\{\mbox{#1}\right\}$}
+
+\renewcommand{\RubikCubeSolved}{%
+	\RubikFaceUp	{W}{W}{W}
+			{W}{W}{W}
+			{W}{W}{W}
+	\RubikFaceDown	{Y}{Y}{Y}
+			{Y}{Y}{Y}
+			{Y}{Y}{Y}
+	\RubikFaceLeft	{O}{O}{O}
+			{O}{O}{O}
+			{O}{O}{O}
+	\RubikFaceRight	{R}{R}{R}
+			{R}{R}{R}
+			{R}{R}{R}
+	\RubikFaceFront	{G}{G}{G}
+			{G}{G}{G}
+			{G}{G}{G}
+	\RubikFaceBack	{B}{B}{B}
+			{B}{B}{B}
+			{B}{B}{B}
+}
+
+\renewcommand{\RubikCubeGrey}{
+	\RubikFaceUp	{X}{X}{X}
+			{X}{W}{X}
+			{X}{X}{X}
+	\RubikFaceDown	{X}{X}{X}
+			{X}{Y}{X}
+			{X}{X}{X}
+	\RubikFaceLeft	{X}{X}{X}
+			{X}{O}{X}
+			{X}{X}{X}
+	\RubikFaceRight	{X}{X}{X}
+			{X}{R}{X}
+			{X}{X}{X}
+	\RubikFaceFront	{X}{X}{X}
+			{X}{G}{X}
+			{X}{X}{X}
+	\RubikFaceBack	{X}{X}{X}
+			{X}{B}{X}
+			{X}{X}{X}
+}
+
+\newcommand{\RubikCubeCross}{%
+\RubikCubeGrey
+\RubikFaceUp	{X}{W}{X}
+		{W}{W}{W}
+		{X}{W}{X}
+\RubikFaceLeft	{X}{O}{X}
+		{X}{O}{X}
+		{X}{X}{X}
+\RubikFaceRight	{X}{R}{X}
+		{X}{R}{X}
+		{X}{X}{X}
+\RubikFaceFront	{X}{G}{X}
+		{X}{G}{X}
+		{X}{X}{X}
+\RubikFaceBack	{X}{B}{X}
+		{X}{B}{X}
+		{X}{X}{X}
+}
+
+\newcommand{\RubikCubeFirstLayer}{%
+\RubikFaceUp	{W}{W}{W}
+		{W}{W}{W}
+		{W}{W}{W}
+\RubikFaceLeft	{O}{O}{O}
+		{X}{O}{X}
+		{X}{X}{X}
+\RubikFaceRight	{R}{R}{R}
+		{X}{R}{X}
+		{X}{X}{X}
+\RubikFaceFront	{G}{G}{G}
+		{X}{G}{X}
+		{X}{X}{X}
+\RubikFaceBack	{B}{B}{B}
+		{X}{B}{X}
+		{X}{X}{X}
+}
+
+\newcommand{\RubikCubeFirstTwoLayers}{%
+\RubikFaceUp	{W}{W}{W}
+		{W}{W}{W}
+		{W}{W}{W}
+\RubikFaceLeft	{O}{O}{O}
+		{O}{O}{O}
+		{X}{X}{X}
+\RubikFaceRight	{R}{R}{R}
+		{R}{R}{R}
+		{X}{X}{X}
+\RubikFaceFront	{G}{G}{G}
+		{G}{G}{G}
+		{X}{X}{X}
+\RubikFaceBack	{B}{B}{B}
+		{B}{B}{B}
+		{X}{X}{X}
+}
+
+\newcommand{\RubikCubeTopCross}{%
+\RubikFaceUp	{W}{W}{W}
+		{W}{W}{W}
+		{W}{W}{W}
+\RubikFaceDown	{X}{Y}{X}
+		{Y}{Y}{Y}
+		{X}{Y}{X}	
+\RubikFaceLeft	{O}{O}{O}
+		{O}{O}{O}
+		{X}{X}{X}
+\RubikFaceRight	{R}{R}{R}
+		{R}{R}{R}
+		{X}{X}{X}
+\RubikFaceFront	{G}{G}{G}
+		{G}{G}{G}
+		{X}{X}{X}
+\RubikFaceBack	{B}{B}{B}
+		{B}{B}{B}
+		{X}{X}{X}
+}
+
+\newcommand{\RubikCubeTopCrossOk}{
+\RubikFaceUp	{W}{W}{W}
+		{W}{W}{W}
+		{W}{W}{W}
+\RubikFaceDown	{X}{Y}{X}
+		{Y}{Y}{Y}
+		{X}{Y}{X}	
+\RubikFaceLeft	{O}{O}{O}
+		{O}{O}{O}
+		{X}{O}{X}
+\RubikFaceRight	{R}{R}{R}
+		{R}{R}{R}
+		{X}{R}{X}
+\RubikFaceFront	{G}{G}{G}
+		{G}{G}{G}
+		{X}{G}{X}
+\RubikFaceBack	{B}{B}{B}
+		{B}{B}{B}
+		{X}{B}{X}
+}
+
+\newcommand{\RubikCubeOLL}{%
+\RubikFaceUp	{W}{W}{W}
+		{W}{W}{W}
+		{W}{W}{W}
+\RubikFaceLeft	{O}{O}{O}
+		{O}{O}{O}
+		{X}{X}{X}
+\RubikFaceRight	{R}{R}{R}
+		{R}{R}{R}
+		{X}{X}{X}
+\RubikFaceFront	{G}{G}{G}
+		{G}{G}{G}
+		{X}{X}{X}
+\RubikFaceBack	{B}{B}{B}
+		{B}{B}{B}
+		{X}{X}{X}
+}
+
+\newcommand{\sexy}{R,U,Rp,Up}
+\newcommand{\antisune}{R,U2,Rp,Up,R,Up,Rp}
+\newcommand{\shortT}{F,R,U,Rp,Up,Fp}
+
+
+\begin{document}
+\maketitle
+
+\NoSidebar{X}
+
+\vspace{-1cm}
+\section{Cross}
+	\RubikCubeCross
+	\RubikRotation{F2}\ShowCube{2cm}{0.5}{
+            \DrawRubikCubeRU
+            \DrawRubikCubeSidebarFD{RU}
+        }
+	\Rubik{F}\Rubik{F}
+	\RubikRotation{F2}\ShowCube{2cm}{0.5}{\DrawRubikCubeRU }
+	\RubikCubeCross
+	\RubikRotation{R,F,Rp,Dp}\ShowCube{2cm}{0.5}{	
+            \DrawRubikCubeRU 
+            \DrawRubikCubeSidebarFD{RU}
+        }
+	\Rubik{D}\Rubik{R}\Rubik{Fp}\Rubik{Rp}
+	\RubikRotation{D,R,Fp,Rp}\ShowCube{2cm}{0.5}{\DrawRubikCubeRU}
+	
+\section{First Layer}
+	\RubikCubeFirstLayer
+	\RubikRotation{Rp,Dp,R,D}\ShowCube{2cm}{0.5}{
+            \DrawRubikCubeRU
+            \DrawRubikCubeSidebarFD{RU}
+        }
+	\Rubik{Dp}\Rubik{Rp}\Rubik{D}\Rubik{R}
+	\RubikRotation{Dp,Rp,D,R}\ShowCube{2cm}{0.5}{\DrawRubikCubeRU}
+%	\vspace{0.3cm}\\
+	\RubikCubeFirstLayer \RubikRotation{y}
+	\RubikRotation{L,D,Lp,Dp}\ShowCube{2.3cm}{0.5}{
+            \DrawRubikCubeLU 
+            \DrawRubikCubeSidebarFD{LU}
+        }
+	\Rubik{D}\Rubik{L}\Rubik{Dp}\Rubik{Lp}
+	\RubikRotation{D,L,Dp,Lp}\ShowCube{2cm}{0.5}{\DrawRubikCubeLU}
+	
+\section{Second Layer}
+	\RubikCubeFirstTwoLayers
+	\RubikRotation{F,Dp,Fp,Dp,Rp,D,R,D}\ShowCube{2cm}{0.5}{\DrawRubikCubeRD}
+	\Rubik{Dp}\Rubik{Rp}\Rubik{D}\Rubik{R}
+	\RubikRotation{Dp,Rp,D,R}\ShowCube{2cm}{0.5}{\DrawRubikCubeRD}
+%	\vspace{0.3cm}\\
+	\RubikCubeFirstTwoLayers
+	\RubikRotation{Rp,D,R,D,F,Dp,Fp,Dp,y}\ShowCube{2cm}{0.5}{\DrawRubikCubeLD}
+	\Rubik{D}\Rubik{L}\Rubik{Dp}\Rubik{Lp}
+	\RubikRotation{D,L,Dp,Lp}\ShowCube{2cm}{0.5}{\DrawRubikCubeLD}
+
+\section{Last Layer}
+
+\subsection{Cross Last Layer}
+	\Rubik{F}\Rubik{R}\Rubik{U}\Rubik{Rp}\Rubik{Up}\Rubik{Fp}\RubikCubeTopCross
+	\RubikRotation{z2}\RubikRotation[3]{\shortT,y2}\RubikRotation{y2}
+	\ShowCube{2.1cm}{0.5}{
+            \DrawRubikFaceUpSide
+	}
+	$\rightarrow$\RubikRotation{\shortT}	
+	\ShowCube{2.1cm}{0.5}{%
+            \DrawRubikFaceUpSide
+	}	
+	$\rightarrow$\RubikRotation{\shortT,y}		
+	\ShowCube{2.1cm}{0.5}{%
+            \DrawRubikFaceUpSide
+	}
+	$\rightarrow$\RubikRotation{\shortT,yp}
+	\ShowCube{2cm}{0.5}{\DrawRubikCubeRU}
+
+\vspace{-0.5cm}
+\subsection{Correct cross}
+	\Rubik{R}\Rubik{Up}\Rubik{Up}\Rubik{Rp}\Rubik{Up}\Rubik{R}\Rubik{Up}\Rubik{Rp}
+	\RubikCubeTopCross
+	\RubikRotation{z2}
+	\ShowCube{2cm}{0.5}{%
+            \DrawRubikFaceUpSide
+            \draw[->,thick,color=black] (0.5,1.55) -- (1.45, 2.5);
+            \draw[->,thick,color=black] (1.55,2.5) -- (2.5, 1.55);
+            \draw[->,thick,color=black] (2.45, 1.45) -- (0.55, 1.45);
+	} \quad
+	$\longrightarrow$
+	\RubikCubeTopCrossOk\RubikRotation{z2}
+	\ShowCube{2cm}{0.5}{\DrawRubikCubeRU}
+\vspace{-0.5cm}
+\subsection{Corners permutation}
+	\Rubik{R}\Rubik{Up}\Rubik{Lp}\Rubik{U}\Rubik{Rp}\Rubik{Up}\Rubik{L}\Rubik{U}
+	\RubikCubeTopCross
+	\RubikRotation{z2}
+	\ShowCube{2cm}{0.5}{%
+            \DrawRubikFaceUpSide
+            \draw[->,thick,color=black] (2.55,0.55) -- (2.55, 2.45);
+            \draw[->,thick,color=black] (2.45,2.55) -- (0.55, 2.55);
+            \draw[->,thick,color=black] (0.45, 2.45) -- (2.45, 0.45);
+            \node (B) at (0.5, 0.5) [black]{\tiny\textsf{OK}};
+	} \quad
+	$\longrightarrow$
+	\RubikCubeSolved\RubikRotation{z2}\RubikRotation{\antisune,Lp,U2,L,U,Lp,U,L,z}\RubikRotation{\antisune,Lp,U2,L,U,Lp,U,L}\RubikRotation{zp}	
+	\ShowCube{2cm}{0.5}{\DrawRubikCubeRU}
+\vspace{-0.5cm}
+\subsection{Corners orientation}
+	\RubikCubeSolved
+	\RubikRotation{zp,x2}	
+	\RubikRotation[2]{\antisune,Lp,U2,L,U,Lp,U,L}\ShowCube{2cm}{0.5}{\DrawRubikCubeRU}
+	\Rubikbracket{\Rubik{R}\Rubik{Up}\Rubik{Up}\Rubik{Rp}\Rubik{Up}\Rubik{R}\Rubik{Up}\Rubik{Rp}} %\quad
+	\Rubikbracket{\Rubik{Lp}\Rubik{U}\Rubik{U}\Rubik{L}\Rubik{U}\Rubik{Lp}\Rubik{U}\Rubik{L}}
+	\RubikRotation{\antisune,Lp,U2,L,U,Lp,U,L}\ShowCube{2cm}{0.5}{\DrawRubikCubeRU}
+	
+\end{document}
